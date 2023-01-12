@@ -24,12 +24,12 @@ const todoReducer = (state: TodosState, action:any) => {
 };
 
 type TodoDispatch = Dispatch<any>
-export const DispatchContext = createContext<TodoDispatch | "">("");
-export const TodoContext = createContext<TodosState | "">("");
+export const DispatchContext = createContext<TodoDispatch | null>(null);
+export const TodoContext = createContext<TodosState | null>(null);
 
 const init = [];
 
-const TodoContextWrap = ({children}:{children:React.ReactNode}) => {
+const TodoContextWrap = ({children}:{children:React.ReactNode}) :JSX.Element=> {
   const [todos, dispatch] = useReducer(todoReducer, init);
   return (
     <TodoContext.Provider value={todos}>
